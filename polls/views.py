@@ -24,7 +24,7 @@ def detail(request, question_id):
     # try:
     #     question = Question.objects.get(pk=question_id)
     # except Question.DoesNotExist:
-    #     raise Http404("Question does not exist")
+    #     raise Http404("Quest ion does not exist")
     # return render(request, 'polls/detail.html', {'question': question})
     #return HttpResponse("You're looking at question %s." %question_id)
     question = get_object_or_404(Question, pk=question_id)
@@ -44,7 +44,7 @@ def vote(request, question_id):
             'error_message': "You didn't select a choice",
         })
     else:
-        select_choice.votes += 1
-        select_choice.save()
+        selected_choice.votes += 1
+        selected_choice.save()
 
-        return HttpResponseRedirect(reverse('polls:results', arg=(question_id, id)))
+        return HttpResponseRedirect(reverse('polls:results', arg=(question.id,)))
